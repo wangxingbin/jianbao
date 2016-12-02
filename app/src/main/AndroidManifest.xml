@@ -9,7 +9,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity" />
-        <activity android:name="mainframe.LoginShow"/>
         <activity android:name="mainframe.Splash"
             android:theme="@style/Theme.AppCompat"
             >
