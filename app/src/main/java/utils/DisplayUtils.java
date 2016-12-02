@@ -7,7 +7,7 @@ import android.util.TypedValue;
  * Created by 诺古 on 2016/11/28.
  */
 
-public class DisplayUtil {
+public class DisplayUtils {
     /*
     将px转换成dp或者dip
      */
