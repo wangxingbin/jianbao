@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="1">
+
+    <LinearLayout
+        android:id="@+id/ll_01"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/et_jiianbao_biaoti"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:hint="标题" />
+
+        <ImageView
+            android:id="@+id/publish_erweima"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:gravity="right"
+            android:src="@mipmap/erweima1" />
+
+    </LinearLayout>
+
+
+    <EditText
+        android:id="@+id/et_jianbao_miaoshu"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:hint="描述下你要拍卖的物品"
+        android:layout_below="@+id/ll_01" />
+
+    <LinearLayout
+        android:id="@+id/ll_02"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:orientation="horizontal"
+        android:layout_below="@+id/et_jianbao_miaoshu"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <ImageView
+            android:id="@+id/iv_publish_picture"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/publish_phtot_rim" />
+
+        <ImageView
+            android:id="@+id/iv_publish_picture2"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/publish_phtot_rim" />
+
+        <ImageView
+            android:id="@+id/iv_publish_picture3"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/publish_phtot_rim" />
+
+        <ImageView
+            android:id="@+id/iv_publish_picture4"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/publish_phtot_rim" />
+
+        <ImageView
+            android:id="@+id/iv_publish_picture5"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/publish_phtot_rim" />
+
+
+    </LinearLayout>
+
+
+    <View
+        android:id="@+id/vw_view"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_below="@+id/ll_02"
+        android:layout_marginTop="40dp"
+        android:background="#c0c0c0c0" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:layout_below="@id/vw_view"
+        android:layout_marginTop="40dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_below="@id/vw_view"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:text="价格" />
+
+            <EditText
+                android:id="@+id/et_jianbao_price"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="7"
+                android:gravity="center"
+                android:hint="输入你的宝贝的价钱" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:text="电话" />
+
+            <EditText
+                android:id="@+id/et_jianbao_number"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="7"
+                android:gravity="center"
+                android:hint="输入你的电话号码" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:text="联系方式"
+                android:id="@+id/textView" />
+
+            <EditText
+                android:id="@+id/et_jianbao_email"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="7"
+                android:gravity="center"
+                android:hint="输入你的QQ或微信或Email账号" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:background="#ff0066"
+            android:gravity="center"
+            android:text="发布"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>

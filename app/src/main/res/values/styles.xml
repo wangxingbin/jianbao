@@ -8,4 +8,33 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+
+    <!--发布的加号对话框样式-->
+
+    <style name="Dialog_Fullscreen">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="line">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/line_lighte</item>
+        <item name="android:background">#ff00</item>
+    </style>
+
+    <style name="circular_dialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowFrame">@null</item><!-- 有无边框 -->
+        <item name="android:windowIsFloating">true</item><!-- 是否悬浮在activity上 -->
+        <item name="android:windowIsTranslucent">false</item><!-- 是否半透明 -->
+        <item name="android:windowNoTitle">true</item><!-- 设置有无标题 -->
+        <item name="android:windowBackground">@android:color/transparent</item><!-- 设置背景背景透明 -->
+        <item name="android:backgroundDimEnabled">false</item><!-- 设置背景是否模糊显示 -->
+        <item name="android:backgroundDimAmount">0.6</item><!-- 灰度 -->
+        <item name="android:windowContentOverlay">@null</item><!-- 对话框是否有遮盖 -->
+        <!--<item name="android:windowAnimationStyle">@style/dialog_animation</item>&lt;!&ndash; 弹出或者进入时的动画效果 &ndash;&gt;-->
+        <item name="android:colorBackgroundCacheHint">@null</item><!-- 背景缓存颜色 -->
+        <item name="android:background">@android:color/transparent</item>   <!-- 系统透明？？？ -->
+    </style>
+
 </resources>

@@ -1,4 +1,4 @@
-package com.wxb.jianbao.utils;
+package utils;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -24,10 +24,18 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
- * Created by 赵自强 on 2016/11/27.
+ * Tools for handler picture
+ *
+ * @author Ryan.Tang
  */
+public final class ImageTools {
 
-public class ImageTools {
+    /**
+     * Transfer drawable to bitmap
+     *
+     * @param drawable
+     * @return
+     */
     public static Bitmap drawableToBitmap(Drawable drawable) {
         int w = drawable.getIntrinsicWidth();
         int h = drawable.getIntrinsicHeight();
@@ -178,8 +186,7 @@ public class ImageTools {
      * Get rounded corner images
      *
      * @param bitmap
-     * @param roundPx
-     *            5 10
+     * @param roundPx 5 10
      * @return
      */
     public static Bitmap getRoundedCornerBitmap(Bitmap bitmap, float roundPx) {
@@ -222,6 +229,7 @@ public class ImageTools {
 
     /**
      * Resize the drawable
+     *
      * @param drawable
      * @param w
      * @param h
@@ -242,32 +250,30 @@ public class ImageTools {
 
     /**
      * Get images from SD card by path and the name of image
+     *
      * @param photoName
      * @return
      */
-    public static Bitmap getPhotoFromSDCard(String path,String photoName){
-        Bitmap photoBitmap = BitmapFactory.decodeFile(path + "/" +photoName +".png");
+    public static Bitmap getPhotoFromSDCard(String path, String photoName) {
+        Bitmap photoBitmap = BitmapFactory.decodeFile(path + "/" + photoName + ".png");
         if (photoBitmap == null) {
             return null;
-        }else {
+        } else {
             return photoBitmap;
         }
     }
 
     /**
      * Check the SD card
+     *
      * @return
      */
-    public static boolean checkSDCardAvailable(){
+    public static boolean checkSDCardAvailable() {
         return android.os.Environment.getExternalStorageState().equals(android.os.Environment.MEDIA_MOUNTED);
     }
 
-    /**
-     * Get image from SD card by path and the name of image
-     * @param
-     * @return
-     */
-    public static boolean findPhotoFromSDCard(String path,String photoName){
+
+    public static boolean findPhotoFromSDCard(String path, String photoName) {
         boolean flag = false;
 
         if (checkSDCardAvailable()) {
@@ -281,7 +287,7 @@ public class ImageTools {
                         flag = true;
                     }
                 }
-            }else {
+            } else {
                 flag = false;
             }
 //			File file = new File(path + "/" + photoName  + ".jpg" );
@@ -291,7 +297,7 @@ public class ImageTools {
 //				flag = false;
 //			}
 
-        }else {
+        } else {
             flag = false;
         }
         return flag;
@@ -299,18 +305,19 @@ public class ImageTools {
 
     /**
      * Save image to the SD card
+     *
      * @param photoBitmap
      * @param photoName
      * @param path
      */
-    public static void savePhotoToSDCard(Bitmap photoBitmap,String path,String photoName){
+    public static void savePhotoToSDCard(Bitmap photoBitmap, String path, String photoName) {
         if (checkSDCardAvailable()) {
             File dir = new File(path);
-            if (!dir.exists()){
+            if (!dir.exists()) {
                 dir.mkdirs();
             }
 
-            File photoFile = new File(path , photoName + ".png");
+            File photoFile = new File(path, photoName + ".png");
             FileOutputStream fileOutputStream = null;
             try {
                 fileOutputStream = new FileOutputStream(photoFile);
@@ -326,7 +333,7 @@ public class ImageTools {
             } catch (IOException e) {
                 photoFile.delete();
                 e.printStackTrace();
-            } finally{
+            } finally {
                 try {
                     fileOutputStream.close();
                 } catch (IOException e) {
@@ -336,8 +343,7 @@ public class ImageTools {
         }
     }
 
-
-    public static void deleteAllPhoto(String path){
+    public static void deleteAllPhoto(String path) {
         if (checkSDCardAvailable()) {
             File folder = new File(path);
             File[] files = folder.listFiles();
@@ -347,7 +353,7 @@ public class ImageTools {
         }
     }
 
-    public static void deletePhotoAtPathAndName(String path,String fileName){
+    public static void deletePhotoAtPathAndName(String path, String fileName) {
         if (checkSDCardAvailable()) {
             File folder = new File(path);
             File[] files = folder.listFiles();
@@ -358,4 +364,5 @@ public class ImageTools {
             }
         }
     }
+
 }
