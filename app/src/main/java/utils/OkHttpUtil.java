@@ -22,7 +22,7 @@ import okhttp3.Response;
  * Created by 诺古 on 2016/11/30.
  */
 
-public class OkHttpUtils {
+public class OkHttpUtil {
     private static final String TAG = "OkhttpUtils";
     private static Gson gson = new Gson();//创建gson对象
     private static String string;

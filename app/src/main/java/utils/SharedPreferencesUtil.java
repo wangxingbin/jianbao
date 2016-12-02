@@ -11,7 +11,7 @@ import java.util.Map;
  * Created by 诺古 on 2016/11/30.
  */
 
-public class SharedPreferencesUtils {
+public class SharedPreferencesUtil {
     /**
      * 保存在手机里面的文件名
      */
