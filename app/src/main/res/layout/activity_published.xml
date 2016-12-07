@@ -25,7 +25,7 @@
         app:footerIndicatorHeight="3dp"
         app:footerIndicatorStyle="underline"
         app:selectedBold="true" />
-    <!--app:selectedColor="#FF00ff00"-->
+    <!--com.wxb.jianbao.app:selectedColor="#FF00ff00"-->
 
     <android.support.v4.view.ViewPager
         android:id="@+id/pager"

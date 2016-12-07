@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:fresco="http://schemas.android.com/apk/res-auto"
     android:baselineAligned="false"
     android:orientation="vertical">
     <!--<ImageView
@@ -12,9 +12,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:layout_marginBottom="2dp"
         android:background="#fff"
-        android:layout_marginBottom="2dp">
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -27,15 +27,16 @@
                 android:layout_gravity="center_vertical"
                 android:padding="5dp"
 
+                fresco:actualImageScaleType="centerInside"
+                fresco:backgroundImage="@mipmap/mine"
                 fresco:failureImage="@mipmap/ic_launcher"
                 fresco:failureImageScaleType="centerInside"
-
-                fresco:actualImageScaleType="centerInside"
                 fresco:roundAsCircle="true"
                 fresco:roundingBorderColor="#000000"
                 fresco:roundingBorderWidth="1dp"
-                fresco:backgroundImage="@mipmap/mine"
+
                 />
+
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -83,39 +84,39 @@
         android:layout_marginTop="3dp" />-->
 
     <LinearLayout
-        android:layout_marginTop="3dp"
         android:layout_width="match_parent"
         android:layout_height="80dp"
+        android:layout_marginTop="3dp"
+        android:background="#fff"
         android:orientation="horizontal"
-        android:paddingTop="15dp"
-        android:background="#fff">
+        android:paddingTop="15dp">
 
         <TextView
             android:id="@+id/mine_tv_published"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:drawableTop="@drawable/mine_selector_fabu"
             android:gravity="center"
-            android:text="我发布的"
-            android:drawableTop="@drawable/mine_selector_fabu"/>
+            android:text="我发布的" />
 
         <TextView
             android:id="@+id/mine_tv_sold"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:drawableTop="@drawable/mine_selector_maichu"
             android:gravity="center"
-            android:text="我卖出的"
-            android:drawableTop="@drawable/mine_selector_maichu" />
+            android:text="我卖出的" />
 
         <TextView
             android:id="@+id/mine_tv_attention"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:drawableTop="@drawable/mine_selector_gz"
             android:gravity="center"
-            android:text="我收藏的"
-            android:drawableTop="@drawable/mine_selector_gz" />
+            android:text="我收藏的" />
     </LinearLayout>
     <!--<LinearLayout
         android:layout_width="match_parent"
@@ -140,73 +141,73 @@
         android:layout_marginTop="2dp" />
 
 
-
     <LinearLayout
         android:id="@+id/mine_ll_settings"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:gravity="center_vertical"
-        android:background="#fff">
+        android:background="#fff"
+        android:gravity="center_vertical">
+
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:src="@mipmap/ic_launcher"
-            android:layout_marginLeft="15dp"/>
+            android:layout_marginLeft="15dp"
+            android:src="@mipmap/ic_launcher" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
             android:gravity="center_vertical"
-            android:text="设    置："
-            android:layout_marginLeft="10dp"/>
+            android:text="设    置：" />
+
         <View
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"/>
+            android:layout_weight="1" />
 
         <ImageView
-            android:clickable="true"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:src="@drawable/selector_back_right"
+            android:layout_marginLeft="50dp"
             android:layout_marginRight="20dp"
-            android:layout_marginLeft="50dp"/>
+            android:clickable="true"
+            android:src="@drawable/selector_back_right" />
 
     </LinearLayout>
 
     <View
-       android:layout_width="match_parent"
-       android:layout_height="3dp"
-       android:layout_marginTop="2dp" />
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_marginTop="2dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:gravity="center_vertical"
+        android:layout_marginBottom="5dp"
         android:background="#fff"
-        android:layout_marginBottom="5dp">
+        android:gravity="center_vertical">
+
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:src="@mipmap/ic_launcher"
-            android:layout_marginLeft="15dp"/>
+            android:layout_marginLeft="15dp"
+            android:src="@mipmap/ic_launcher" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
             android:gravity="center_vertical"
-            android:text="邀请码："
-            android:layout_marginLeft="10dp"/>
+            android:text="邀请码：" />
 
         <TextView
             android:id="@+id/mine_tv_invitationCode"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center_vertical"
-            android:text="nhjhvjkfdisf"
-            android:textIsSelectable="true"/>
+            android:text="nhjhvjkfdisf" />
     </LinearLayout>
-
 
     <View
         android:layout_width="match_parent"
@@ -217,15 +218,16 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:background="#fff">
+        android:background="#fff"
+        android:gravity="center">
+
         <Button
             android:id="@+id/mine_bt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
+            android:background="#eee"
             android:gravity="center"
-            android:text="注销登录"
-            android:background="#eee" />
+            android:text="注销登录" />
     </LinearLayout>
 </LinearLayout>

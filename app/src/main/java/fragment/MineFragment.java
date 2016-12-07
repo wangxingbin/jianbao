@@ -1,8 +1,16 @@
 package fragment;
 
-import android.app.Dialog;
+import android.app.Activity;
+import android.content.ContentResolver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -13,20 +21,33 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.wxb.jianbao.R;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.HashMap;
 
 import activity.AttentionActivity;
 import activity.PublishedActivity;
 import activity.SettingsActivity;
 import activity.SoldActivity;
+import app.Contant;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
+import javabeen.CodeBeen;
+import javabeen.GeRenXinxi;
+import javabeen.Uphoto;
+import utils.OkhttpUtils;
 import utils.TakePhotoPopWin;
+import webutils.PhotoPostUtil;
+
+import static com.wxb.jianbao.R.id.mine_tv_invitationCode;
 
 
 /**
@@ -34,6 +55,7 @@ import utils.TakePhotoPopWin;
  */
 
 public class MineFragment extends Fragment {
+    /*ImageView mineIvPhoto;*/
     @InjectView(R.id.mine_iv_photo)
     SimpleDraweeView mineIvPhoto;
     @InjectView(R.id.mine_tv_name)
@@ -46,26 +68,65 @@ public class MineFragment extends Fragment {
     TextView mineTvSold;
     @InjectView(R.id.mine_tv_attention)
     TextView mineTvAttention;
-    @InjectView(R.id.mine_tv_invitationCode)
+    @InjectView(mine_tv_invitationCode)
     TextView mineTvInvitationCode;
     @InjectView(R.id.mine_bt)
     Button mineTv;
     @InjectView(R.id.mine_ll_settings)
     LinearLayout mineLlSettings;
-    private Dialog dialog;
-    private View inflate;
-    private TextView choosePhoto;
-    private TextView takePhoto;
-    private Button cancel;
     private File imageFile;
+    private Uri uri;
+    private SharedPreferences.Editor edit;
+
+    private static final int PHOTO_REQUEST_CAREMA = 1;// 拍照
+    private static final int PHOTO_REQUEST_GALLERY = 2;// 从相册中选择
+    private static final int PHOTO_REQUEST_CUT = 3;// 结果
+
+    private static final String PHOTO_FILE_NAME = "temp_photo.jpg";
+    private TakePhotoPopWin photoPopWin;
+    private int state;
+    private String code;
+    private String token;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_mine, container, false);
         ButterKnife.inject(this, view);
-
+        SharedPreferences sp = getActivity().getSharedPreferences("TOKEN", Context.MODE_PRIVATE);
+        token = sp.getString("token", "");
+        initMine();
         return view;
+    }
+
+    //个人信息
+    private void initMine() {
+        String path = Contant.GeRenXinXi;
+        HashMap<String,String>map = new HashMap<>();
+        map.put("token",token);
+        OkhttpUtils.setGetEntiydata(new OkhttpUtils.EntiyData() {
+
+            private String name;
+            private String mobile;
+
+            @Override
+            public void getEntiy(Object o) {
+                if (o == null || !(o instanceof GeRenXinxi)) {
+                    return;
+                }
+                GeRenXinxi geRenXinxi = (GeRenXinxi) o;
+                mobile = geRenXinxi.getData().getMobile();
+                name = geRenXinxi.getData().getName();
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        mineTvName.setText(name);
+                        mineTvPhoneNum.setText(mobile);
+                    }
+                });
+            }
+        });
+        OkhttpUtils.post(map, path, getActivity(), GeRenXinxi.class);
     }
 
     @Override
@@ -74,7 +135,7 @@ public class MineFragment extends Fragment {
         ButterKnife.reset(this);
     }
 
-    @OnClick({R.id.mine_iv_photo, R.id.mine_tv_published, R.id.mine_tv_sold, R.id.mine_tv_attention, R.id.mine_tv_invitationCode, R.id.mine_bt, R.id.mine_ll_settings})
+    @OnClick({R.id.mine_iv_photo, R.id.mine_tv_published, R.id.mine_tv_sold, R.id.mine_tv_attention, mine_tv_invitationCode, R.id.mine_bt, R.id.mine_ll_settings})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.mine_tv_published:
@@ -86,7 +147,7 @@ public class MineFragment extends Fragment {
             case R.id.mine_tv_attention:
                 startActivity(new Intent(getActivity(), AttentionActivity.class));
                 break;
-            case R.id.mine_tv_invitationCode:
+            case mine_tv_invitationCode:
                 break;
             case R.id.mine_bt:
                 break;
@@ -99,31 +160,300 @@ public class MineFragment extends Fragment {
         }
     }
 
+    private void upLoadPhoto() {
+        String imagepath = "http://192.168.4.188/Goods" + "/app/user/upload.json";
+        String token = "DF592AB8AC4C4D91BE09EF5E9A69D7BE";
+        SharedPreferences shares = getActivity().getSharedPreferences("PATH.", Context.MODE_PRIVATE);
+        String string = shares.getString("path", "");
+        File file = new File(string);
+        HashMap<String, String> map = new HashMap<>();
+        map.put("token", token);
+
+        PhotoPostUtil.getData(new PhotoPostUtil.GetRegisterData() {
+            @Override
+            public void setRegisterData(Object o) {
+                Uphoto uphoto = (Uphoto) o;
+                String status = uphoto.getStatus();
+                if (status.equals("200")) {
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(getActivity(), "上传成功", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+
+
+            }
+        });
+        PhotoPostUtil.upLoad(file, getActivity(), imagepath, map, Uphoto.class);
+
+    }
+
     private void showPop(View v) {
-        TakePhotoPopWin photoPopWin = new TakePhotoPopWin(getActivity(), onClickListener);
+        photoPopWin = new TakePhotoPopWin(getActivity(), onClickListener);
         photoPopWin.showAtLocation(mineIvPhoto, Gravity.CENTER, 0, 0);
     }
 
     private View.OnClickListener onClickListener = new View.OnClickListener() {
 
-                @Override
-                public void onClick(View v) {
-                    switch (v.getId()) {
-                        case R.id.btn_pick_photo:
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()) {
+                case R.id.btn_pick_photo:
 
-                            break;
-                        case R.id.btn_take_photo:
-                            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                            startActivityForResult(intent, 1);
-                            break;
+                    break;
+                case R.id.btn_take_photo:
+                    if (initImageFile()) {
+                        photo();
                     }
-
+                    photoPopWin.dismiss();
+                    break;
+            }
         }
     };
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
+        ContentResolver resolver = getActivity().getContentResolver();
+        SharedPreferences share = getActivity().getSharedPreferences("PATH.", Context.MODE_PRIVATE);
+        SharedPreferences.Editor edit = share.edit();
 
+
+        // 拍照后获取返回值，这里获取到的是原始图片
+        if (requestCode == PHOTO_REQUEST_CAREMA
+                && resultCode == Activity.RESULT_OK) {
+            // 获取到了拍照后的图片文件，从文件解码出Bitmap对象
+            if (imageFile.exists()) {
+                // 这里直接decode了图片，没有判断图片大小，没有对可能出现的OOM做处理
+                edit.putString("path", imageFile.getAbsolutePath());
+                edit.commit();
+        /*        Bitmap bm = BitmapFactory.decodeFile(imageFile.getAbsolutePath());
+
+                // 显示图片
+                this.mineIvPhoto.setImageBitmap(bm);
+                */
+                mineIvPhoto.setImageURI(imageFile.getAbsolutePath());
+
+            } else {
+                Toast.makeText(getActivity(), "图片文件不存在", Toast.LENGTH_SHORT).show();
+            }
+
+        } else if (requestCode == PHOTO_REQUEST_GALLERY) {
+            if (data != null) {
+                try {
+                    // 获得图片的uri
+                    Uri originalUri = data.getData();
+                    String[] proj = {MediaStore.Images.Media.DATA};
+                    Cursor cursor = getActivity().managedQuery(originalUri, proj, null, null, null);
+                    //按我个人理解 这个是获得用户选择的图片的索引值
+                    int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+                    //将光标移至开头 ，这个很重要，不小心很容易引起越界
+                    cursor.moveToFirst();
+                    //最后根据索引值获取图片路径
+                    String path = cursor.getString(column_index);
+                    edit.putString("path", path);
+                    edit.commit();
+
+                    // chosepath = originalUri.toString();
+
+                    /*
+                    edit.putString("path", chosepath);
+                    edit.commit();*//*
+                    Log.i(TAG, chosepath + "+++++++++++++++++++++++++++++++++");
+
+                    */
+
+                    /*将图片内容解析成字节数组*/
+//                    byte[] mContent = readStream(resolver.openInputStream(Uri
+//                            .parse(chosepath)));
+//
+//                    // 将字节数组转换为ImageView可调用的Bitmap对象
+//                    Bitmap myBitmap = getPicFromBytes(mContent, null);
+//                    // //把得到的图片绑定在控件上显示
+//                    this.mineIvPhoto.setImageBitmap(myBitmap);
+
+                    mineIvPhoto.setImageURI(originalUri);
+
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
+
+    private void crop(Uri uri) {
+
+
+        // 裁剪图片意图
+        Intent intent = new Intent("com.android.camera.action.CROP");
+        intent.setDataAndType(uri, "image/*");
+        intent.putExtra("crop", "true");
+        // 裁剪框的比例，1：1
+        intent.putExtra("aspectX", 1);
+        intent.putExtra("aspectY", 1);
+        // 裁剪后输出图片的尺寸大小
+        intent.putExtra("outputX", 250);
+        intent.putExtra("outputY", 250);
+
+        intent.putExtra("outputFormat", "JPEG");// 图片格式
+        intent.putExtra("noFaceDetection", true);// 取消人脸识别
+        intent.putExtra("return-data", true);
+        // 开启一个带有返回值的Activity，请求码为PHOTO_REQUEST_CUT
+        startActivityForResult(intent, PHOTO_REQUEST_CUT);
+    }
+
+
+    private void pictureschose() {
+        Intent intent = new Intent();
+                /* 开启Pictures画面Type设定为image */
+        intent.setType("image/*");
+                /* 使用Intent.ACTION_GET_CONTENT这个Action */
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+                /* 取得相片后返回本画面 */
+        startActivityForResult(intent, PHOTO_REQUEST_GALLERY);
+    }
+
+
+    public void photo() {
+        // 启动系统相机
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        // 设置拍照后保存的图片存储在文件中
+        uri = Uri.fromFile(imageFile);
+        crop(uri);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
+        // 启动activity并获取返回数据
+        startActivityForResult(intent, PHOTO_REQUEST_CAREMA);
+    }
+
+
+    private boolean initImageFile() {
+        // 有SD卡时才初始化文件
+        if (hasSdcard()) {
+//            // 构造存储图片的文件的路径，文件名为当前时间
+            String filePath = Environment.getExternalStorageDirectory()
+                    .getAbsolutePath()
+                    + "/"
+                    + System.currentTimeMillis()
+                    + ".jpg";
+
+            imageFile = new File(filePath);
+            if (!imageFile.exists()) {// 如果文件不存在，就创建文件
+                try {
+                    imageFile.createNewFile();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            return true;
+        }
+        return false;
+    }
+
+
+    /*
+   * 判断sdcard是否被挂载
+   */
+    private boolean hasSdcard() {
+        if (Environment.getExternalStorageState().equals(
+                Environment.MEDIA_MOUNTED)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public static Bitmap getPicFromBytes(byte[] bytes, BitmapFactory.Options opts) {
+        if (bytes != null) {
+            if (opts != null) {
+                return BitmapFactory.decodeByteArray(bytes, 0, bytes.length, opts);
+            } else {
+                return BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+            }
+        }
+        return null;
+    }
+
+    public static byte[] readStream(InputStream inStream) throws Exception {
+        byte[] buffer = new byte[1024];
+        int len = -1;
+        ByteArrayOutputStream outStream = new ByteArrayOutputStream();
+        while ((len = inStream.read(buffer)) != -1) {
+            outStream.write(buffer, 0, len);
+        }
+        byte[] data = outStream.toByteArray();
+        outStream.close();
+        inStream.close();
+        return data;
+    }
+
+    private void initData() {
+
+        HashMap<String, String> map = new HashMap<>();
+        map.put("token", token);
+        String path = Contant.InvitationCode;
+        OkhttpUtils.setGetEntiydata(new OkhttpUtils.EntiyData() {
+            @Override
+            public void getEntiy(Object o) {
+                if (o == null || !(o instanceof CodeBeen)) {
+                    return;
+                }
+                CodeBeen codeBeen = (CodeBeen) o;
+                String status = codeBeen.getStatus();
+                if (status.equals("200")) {
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(getActivity(), "获取邀请码成功", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                } else {
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(getActivity(), "获取邀请码失败", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+                }
+                CodeBeen.DataBean data = codeBeen.getData();
+                if (data == null) {
+                    return;
+                }
+
+                code = data.getCode();
+
+                state = data.getState();
+
+
+
+                if (state == 0) {
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            mineTvInvitationCode.setText(code);
+                            mineTvInvitationCode.setTextColor(getResources().getColor(R.color.black));
+                            mineTvInvitationCode.setTextIsSelectable(true);
+                        }
+                    });
+                } else if (state == 1) {
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            mineTvInvitationCode.setText(code);
+                            mineTvInvitationCode.setTextColor(getResources().getColor(R.color.red));
+                            mineTvInvitationCode.setTextIsSelectable(false);
+                        }
+                    });
+                }
+            }
+        });
+
+        OkhttpUtils.post(map, path, getActivity(), CodeBeen.class);
+    }
+
+
+
 }
