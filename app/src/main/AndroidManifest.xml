@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.wxb.jianbao">
+    <uses-permission android:name="android.permission.INTERNET"/>;
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
 
     <application
         android:allowBackup="true"
@@ -11,14 +15,18 @@
         <activity android:name=".MainActivity"/>
         <activity android:name="mainframe.Splash"
             android:theme="@style/Theme.AppCompat"
-            >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            > <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+
         </activity>
         <activity android:name="mainframe.MainFrameAcitvity"/>
+        <activity android:name="login.Camera"></activity>
+        <activity android:name="login.Login"></activity>
+        <activity android:name="login.Register"></activity>
+
     </application>
 
 </manifest>

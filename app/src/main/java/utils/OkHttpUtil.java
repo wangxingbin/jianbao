@@ -98,7 +98,6 @@ public class OkHttpUtil {
                 .build();
         Call call1 = client.newCall(request1);
         call1.enqueue(new Callback() {
-
             @Override
             public void onFailure(Call call, IOException e) {
                 Toast.makeText(context, "获取数据失败", Toast.LENGTH_SHORT).show();
