@@ -10,7 +10,9 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#a9b7b7" />
+        android:background="#a9b7b7"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"/>
 
     <ImageView
         android:layout_width="match_parent"

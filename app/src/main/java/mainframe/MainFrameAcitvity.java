@@ -12,7 +12,7 @@ import android.widget.TextView;
 import com.wxb.jianbao.R;
 
 import fragment.MineFragment;
-import fragment.ShowFragment;
+import fragment.FragmentShow;
 
 /**
  * Created by Administrator on 2016/11/28.
@@ -58,7 +58,7 @@ public class MainFrameAcitvity extends FragmentActivity {
             switch (view.getId()) {
                 case R.id.iv_shouye:
                     initShouye();
-                    contentFragment = new ShowFragment();
+                    contentFragment = new FragmentShow();
                     transaction.replace(R.id.main_frame_layout, contentFragment);
                     break;
 

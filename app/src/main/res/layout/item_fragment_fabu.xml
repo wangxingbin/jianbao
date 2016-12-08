@@ -17,6 +17,8 @@
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:src="@mipmap/ic_launcher"
+            android:layout_marginLeft="5dp"
+            android:padding="5dp"
 
             fresco:failureImage="@mipmap/ic_launcher"
             fresco:failureImageScaleType="centerInside" />
@@ -47,19 +49,19 @@
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
-                <ImageView
+                <!--<ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_margin="2dp"
-                    android:src="@mipmap/ic_launcher" />
+                    android:src="@mipmap/ic_launcher"
+                    />-->
 
                 <TextView
                     android:id="@+id/item_fabu_money"
                     android:layout_width="wrap_content"
                     android:layout_height="20dp"
-                    android:layout_margin="5dp"
                     android:gravity="bottom"
-                    android:text="1111"
+                    android:text="¥1111"
                     android:textColor="@color/black"
                     android:textSize="18sp" />
 
@@ -69,12 +71,15 @@
                     android:layout_weight="1" />
 
                 <TextView
+                    android:gravity="end"
                     android:id="@+id/item_fabu_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingRight="15dp"
+                    android:paddingRight="20dp"
+                    android:maxEms="8"
+                    android:lines="1"
                     android:text="发布时间"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"/>
 
             </LinearLayout>
 
@@ -83,6 +88,7 @@
     </LinearLayout>
 
     <View
+        android:id="@+id/view"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="#aa0000"

@@ -19,41 +19,39 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import adapter.MyPublishedAdapter;
+import adapter.MyAttentionAdapter;
 import app.Contant;
 import javabeen.CheckPublished;
+import javabeen.ShowBean;
 import utils.OkhttpUtils;
 
 /**
- * Created by Administrator on 2016/11/29.
+ * Created by Administrator on 2016/11/28.
  */
 
-public class FragmentPublished extends Fragment {
+public class FragmentShow extends Fragment {
 
-    private RecyclerView recyclerview;
     private View view;
-    private Handler mHandler=new Handler();
-    private ArrayList<CheckPublished.DataBean.ListBean> list;
+    private RecyclerView recyclerview;
     private ImageView iv;
+    private ArrayList<ShowBean.DataBean.ListBean> list;
+    private Handler mHandler=new Handler();
     private String token = "8B169BF5768049F0BB20B1680042FBF7";
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_fabu,container,false);
-        /*SharedPreferences sp = getActivity().getSharedPreferences("TOKEN", Context.MODE_PRIVATE);
-        token = sp.getString("token", "");*/
+        view = inflater.inflate(R.layout.fragment_fabu,null);
         initView();
         initData();
         return view;
     }
-
     private void initEvent() {
         recyclerview.setItemAnimator(new DefaultItemAnimator());
         recyclerview.setLayoutManager(new StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.VERTICAL));
-        MyPublishedAdapter adapter = new MyPublishedAdapter(getActivity(),list);
+        MyAttentionAdapter adapter = new MyAttentionAdapter(getActivity(),list);
         recyclerview.setAdapter(adapter);
-        adapter.setOnClickListener(new MyPublishedAdapter.OnItemClickListener() {
+        adapter.setOnClickListener(new MyAttentionAdapter.OnItemClickListener() {
             @Override
             public void ItemClickListener(View view, int position) {
                 /*startActivity(new Intent(getActivity(), SoldActivity.class));*/
@@ -62,10 +60,11 @@ public class FragmentPublished extends Fragment {
         });
     }
 
+
     private void initData() {
         String curPage="1";
-        String PATH = Contant.CHECKPUBLISHED;
-        Map<String,String>map = new HashMap<>();
+        String PATH = Contant.GuznZhu;
+        Map<String,String> map = new HashMap<>();
         map.put("token",token);
         map.put("curPage",curPage);
 
@@ -75,20 +74,21 @@ public class FragmentPublished extends Fragment {
                 if (o==null){
                     Toast.makeText(getActivity(), "网络异常，请检查您的网络", Toast.LENGTH_SHORT).show();
                 }
-                if (o!=null&&o instanceof CheckPublished){
+                if (o!=null&&o instanceof ShowBean){
                     //iv.setVisibility(View.GONE);
-                    CheckPublished checkPublished = (CheckPublished)o;
-                    list =(ArrayList)checkPublished.getData().getList();
+                    ShowBean showBean = (ShowBean)o;
+                    list =(ArrayList)showBean.getData().getList();
                     if (list.isEmpty()){
-                       getActivity().runOnUiThread(new Runnable() {
-                           @Override
-                           public void run() {
-                               iv.setVisibility(View.VISIBLE);
-                               recyclerview.setVisibility(View.GONE);
-                           }
-                       });
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                iv.setImageResource(R.mipmap.shoucang);
+                                iv.setVisibility(View.VISIBLE);
+                                recyclerview.setVisibility(View.GONE);
+                            }
+                        });
                     }else {
-                        mHandler.post(new Runnable() {
+                         mHandler.post(new Runnable() {
                             @Override
                             public void run() {
                                 initEvent();
@@ -106,5 +106,6 @@ public class FragmentPublished extends Fragment {
     private void initView() {
         recyclerview = (RecyclerView) view.findViewById(R.id.fragment_fabu_recyclerview);
         iv = (ImageView) view.findViewById(R.id.fragment_fabu_iv);
+
     }
 }

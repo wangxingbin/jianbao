@@ -11,6 +11,8 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
+import android.os.Message;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -76,6 +78,7 @@ public class MineFragment extends Fragment {
     LinearLayout mineLlSettings;
     private File imageFile;
     private Uri uri;
+            private Handler mHandler;
     private SharedPreferences.Editor edit;
 
     private static final int PHOTO_REQUEST_CAREMA = 1;// 拍照
@@ -86,15 +89,15 @@ public class MineFragment extends Fragment {
     private TakePhotoPopWin photoPopWin;
     private int state;
     private String code;
-    private String token;
+    private String token = "8B169BF5768049F0BB20B1680042FBF7";
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_mine, container, false);
         ButterKnife.inject(this, view);
-        SharedPreferences sp = getActivity().getSharedPreferences("TOKEN", Context.MODE_PRIVATE);
-        token = sp.getString("token", "");
+        /*SharedPreferences sp = getActivity().getSharedPreferences("TOKEN", Context.MODE_PRIVATE);
+        token = sp.getString("token", "");*/
         initMine();
         return view;
     }
@@ -148,6 +151,7 @@ public class MineFragment extends Fragment {
                 startActivity(new Intent(getActivity(), AttentionActivity.class));
                 break;
             case mine_tv_invitationCode:
+                initData();
                 break;
             case R.id.mine_bt:
                 break;
@@ -166,10 +170,12 @@ public class MineFragment extends Fragment {
         SharedPreferences shares = getActivity().getSharedPreferences("PATH.", Context.MODE_PRIVATE);
         String string = shares.getString("path", "");
         File file = new File(string);
-        HashMap<String, String> map = new HashMap<>();
+        final HashMap<String, String> map = new HashMap<>();
         map.put("token", token);
 
         PhotoPostUtil.getData(new PhotoPostUtil.GetRegisterData() {
+
+
             @Override
             public void setRegisterData(Object o) {
                 Uphoto uphoto = (Uphoto) o;
@@ -182,8 +188,14 @@ public class MineFragment extends Fragment {
                         }
                     });
                 }
+                mHandler = new Handler(){
+                    @Override
+                    public void handleMessage(Message msg) {
+                        super.handleMessage(msg);
 
-
+                        sendEmptyMessage(1);
+                    }
+                };
             }
         });
         PhotoPostUtil.upLoad(file, getActivity(), imagepath, map, Uphoto.class);
@@ -390,7 +402,6 @@ public class MineFragment extends Fragment {
     }
 
     private void initData() {
-
         HashMap<String, String> map = new HashMap<>();
         map.put("token", token);
         String path = Contant.InvitationCode;
@@ -406,7 +417,7 @@ public class MineFragment extends Fragment {
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(getActivity(), "获取邀请码成功", Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(getActivity(), "获取邀请码成功", Toast.LENGTH_SHORT).show();
                         }
                     });
                 } else {
@@ -427,8 +438,6 @@ public class MineFragment extends Fragment {
 
                 state = data.getState();
 
-
-
                 if (state == 0) {
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
@@ -442,7 +451,7 @@ public class MineFragment extends Fragment {
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            mineTvInvitationCode.setText(code);
+                            mineTvInvitationCode.setText(code+" 已失效");
                             mineTvInvitationCode.setTextColor(getResources().getColor(R.color.red));
                             mineTvInvitationCode.setTextIsSelectable(false);
                         }
@@ -453,7 +462,5 @@ public class MineFragment extends Fragment {
 
         OkhttpUtils.post(map, path, getActivity(), CodeBeen.class);
     }
-
-
 
 }

@@ -15,6 +15,7 @@ public class Contant {
     // 个人信息
     public static final String GeRenXinXi = MAIN + "/app/user/info.json";
 
-
+    // 已关注商品
+    public static final String GuznZhu = MAIN + "/app/user/follow_list.json";
 
 }

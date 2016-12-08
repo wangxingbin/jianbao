@@ -83,13 +83,13 @@ public class OkhttpUtils {
             public void onFailure(Call call, IOException e) {
 
                 System.out.println("下载数据失败");
-                /*mHandler.post(new Runnable() {
+                mHandler.post(new Runnable() {
                     @Override
                     public void run() {
                         Toast.makeText(context, "网络异常，请检查您的网络！", Toast.LENGTH_SHORT).show();
                     }
                 });
-                data.getEntiy(null);*/
+                data.getEntiy(null);
             }
 
             @Override
