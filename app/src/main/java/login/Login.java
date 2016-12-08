@@ -1,6 +1,7 @@
 package login;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -18,6 +19,7 @@ import java.util.HashMap;
 
 import contants.Contans;
 import javabeen.LandBeen;
+import mainframe.MainFrameAcitvity;
 import utils.OkHttpUtil;
 import view.ShowToastUtils;
 
@@ -42,8 +44,9 @@ public class Login extends Activity implements View.OnClickListener{
         private String name;
         private String username;
         private String password;
+    private ProgressDialog progressDialog;
 
-        @Override
+    @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.login);
@@ -119,7 +122,11 @@ public class Login extends Activity implements View.OnClickListener{
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
+                                progressDialog.dismiss();
+
                                 ShowToastUtils.showToast(Login.this,"登陆成功");
+                                finish();
+                                startActivity(new Intent(Login.this, MainFrameAcitvity.class));
                             }
                         });
                     }else if (status.equals("302")){
@@ -193,6 +200,10 @@ public class Login extends Activity implements View.OnClickListener{
                         ShowToastUtils.showToast(this,"请输入正确手机号");
                         return;
                     } else {
+                        progressDialog = new ProgressDialog(Login.this);
+                        progressDialog.setMessage("请稍等....");
+                        progressDialog.setTitle("正在登陆");
+                        progressDialog.show();
                         initdata();
                     }
                     break;

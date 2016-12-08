@@ -11,6 +11,8 @@ import android.widget.TextView;
 
 import com.wxb.jianbao.R;
 
+import login.Login;
+
 /**
  * Created by 诺古 on 2016/11/26.
  */
@@ -39,8 +41,9 @@ public class Splash extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Splash.this, MainFrameAcitvity.class);
+                Intent intent = new Intent(Splash.this, Login.class);
                 startActivity(intent);
+                finish();
                 timer.cancel();
             }
         });
@@ -57,7 +60,7 @@ public class Splash extends AppCompatActivity {
             public void onFinish() {
                 tv_timer.setText("跳转");
                 tv_timer.setClickable(true);
-                Intent intent = new Intent(Splash.this, MainFrameAcitvity.class);
+                Intent intent = new Intent(Splash.this, Login.class);
                 startActivity(intent);
                 timer.cancel();
                 finish();
