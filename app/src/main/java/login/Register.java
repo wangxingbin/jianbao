@@ -1,6 +1,7 @@
 package login;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -44,6 +45,7 @@ public class Register extends Activity implements View.OnClickListener {
     private File file;
     private HashMap<String, String> map;
     private String status;
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,6 +121,10 @@ public class Register extends Activity implements View.OnClickListener {
                     ShowToastUtils.showToast(Register.this,"请填写你的用户信息");
                     return;
                 }
+                progressDialog = new ProgressDialog(Register.this);
+                progressDialog.setMessage("请稍等....");
+                progressDialog.setTitle("正在注册");
+                progressDialog.show();
                 upLoadPhoto();
                 break;
 
@@ -139,6 +145,7 @@ public class Register extends Activity implements View.OnClickListener {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
+                            progressDialog.dismiss();
                             ShowToastUtils.showToast(Register.this, "注册成功");
                             finish();
 
@@ -148,6 +155,7 @@ public class Register extends Activity implements View.OnClickListener {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
+                            progressDialog.dismiss();
                             ShowToastUtils.showToast(Register.this,"此号码已注册请换号");
                         }
                     });
@@ -156,6 +164,7 @@ public class Register extends Activity implements View.OnClickListener {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
+                            progressDialog.dismiss();
                             ShowToastUtils.showToast(Register.this,"邀请码已使用");
                         }
                     });

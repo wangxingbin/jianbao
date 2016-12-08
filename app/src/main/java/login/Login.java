@@ -141,6 +141,7 @@ public class Login extends Activity implements View.OnClickListener{
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
+                                progressDialog.dismiss();
                                 ShowToastUtils.showToast(Login.this,"用户不存在");
                             }
                         });
@@ -149,6 +150,7 @@ public class Login extends Activity implements View.OnClickListener{
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
+                                progressDialog.dismiss();
                                 ShowToastUtils.showToast(Login.this,"用户名或者密码不正确");
                             }
                         });
