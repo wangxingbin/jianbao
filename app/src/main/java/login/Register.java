@@ -169,7 +169,16 @@ public class Register extends Activity implements View.OnClickListener {
                         }
                     });
                     return;
-                }
+                }else if (status.equals("204")){
+                  runOnUiThread(new Runnable() {
+                      @Override
+                      public void run() {
+                          progressDialog.dismiss();
+                          ShowToastUtils.showToast(Register.this,"请完善你的信息");
+                      }
+                  });
+                  return;
+              }
 
 
             }
