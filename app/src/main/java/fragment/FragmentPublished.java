@@ -20,7 +20,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import adapter.MyPublishedAdapter;
-import contants.Contants;
+import contants.Contans;
 import javabeen.CheckPublished;
 import utils.OkhttpUtils;
 
@@ -35,7 +35,7 @@ public class FragmentPublished extends Fragment {
     private Handler mHandler=new Handler();
     private ArrayList<CheckPublished.DataBean.ListBean> list;
     private ImageView iv;
-    private String token = "83128CE32AC64D3D999FCD5E225BF886";
+    private String token = "3317E96140BA4B149E464017288BA41C";
 
     @Nullable
     @Override
@@ -64,7 +64,7 @@ public class FragmentPublished extends Fragment {
 
     private void initData() {
         String curPage="1";
-        String PATH = Contants.CHECKPUBLISHED;
+        String PATH = Contans.CHECKPUBLISHED;
         Map<String,String>map = new HashMap<>();
         map.put("token",token);
         map.put("curPage",curPage);

@@ -18,7 +18,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import adapter.MyAttentionAdapter;
-import contants.Contants;
+import contants.Contans;
 import javabeen.ShowBean;
 import utils.OkhttpUtils;
 
@@ -33,7 +33,7 @@ public class AttentionActivity extends Activity {
     private ImageView iv;
     private ArrayList<ShowBean.DataBean.ListBean> list;
     private Handler mHandler = new Handler();
-    private String token = "83128CE32AC64D3D999FCD5E225BF886";
+    private String token = "3317E96140BA4B149E464017288BA41C";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +56,7 @@ public class AttentionActivity extends Activity {
 
     private void initData() {
         String curPage = "1";
-        String PATH = Contants.GuznZhu;
+        String PATH = Contans.GuznZhu;
         Map<String, String> map = new HashMap<>();
         map.put("token", token);
         map.put("curPage", curPage);

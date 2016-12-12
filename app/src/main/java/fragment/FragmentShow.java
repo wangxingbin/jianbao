@@ -20,7 +20,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import adapter.MyAttentionAdapter;
-import contants.Contants;
+import contants.Contans;
 import javabeen.CheckPublished;
 import javabeen.ShowBean;
 import utils.OkhttpUtils;
@@ -63,7 +63,7 @@ public class FragmentShow extends Fragment {
 
     private void initData() {
         String curPage="1";
-        String PATH = Contants.GuznZhu;
+        String PATH = Contans.GuznZhu;
         Map<String,String> map = new HashMap<>();
         map.put("token",token);
         map.put("curPage",curPage);

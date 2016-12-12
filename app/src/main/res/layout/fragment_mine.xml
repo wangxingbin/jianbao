@@ -26,6 +26,7 @@
                 android:layout_height="130dp"
                 android:layout_gravity="center_vertical"
                 android:padding="5dp"
+                fresco:placeholderImage="@mipmap/ic_launcher"
                 fresco:actualImageScaleType="centerCrop"
                 fresco:backgroundImage="@mipmap/mine"
                 fresco:roundAsCircle="true"

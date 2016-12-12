@@ -13,7 +13,7 @@ import com.wxb.jianbao.R;
 
 import java.util.ArrayList;
 
-import contants.Contants;
+import contants.Contans;
 import javabeen.CheckPublished;
 
 /*
@@ -51,7 +51,7 @@ public class MyPublishedAdapter extends RecyclerView.Adapter <MyPublishedAdapter
     @Override
     public void onBindViewHolder(final MyViewHolder holder, int position) {
         // 图片
-        String image = Contants.IMGQZ+list.get(position).getImage();
+        String image = Contans.IMGQZ+list.get(position).getImage();
 //        // 转换时间
 //        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 //        long issue_time = list1.get(position).getIssue_time();

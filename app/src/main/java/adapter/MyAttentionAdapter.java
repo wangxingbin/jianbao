@@ -13,7 +13,7 @@ import com.wxb.jianbao.R;
 
 import java.util.ArrayList;
 
-import contants.Contants;
+import contants.Contans;
 import javabeen.ShowBean;
 
 /**
@@ -52,7 +52,7 @@ public class MyAttentionAdapter extends RecyclerView.Adapter <MyAttentionAdapter
     @Override
     public void onBindViewHolder(final MyAttentionAdapter.MyViewHolder holder, int position) {
         // 图片
-        String image = Contants.IMGQZ+list.get(position).getImage();
+        String image = Contans.IMGQZ+list.get(position).getImage();
 
         // 讲获取到的数据放到相应的控件上
         holder.fabu_money.setText(list.get(position).getPrice());

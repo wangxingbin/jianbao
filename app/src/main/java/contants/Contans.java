@@ -4,7 +4,7 @@ package contants;
  * Created by Administrator on 2016/12/6.
  */
 
-public class Contants {
+public class Contans {
     public static final String  MAIN = "http://192.168.4.188/Goods";
     // 已发布商品查询
     public static final String CHECKPUBLISHED = MAIN + "/app/user/issue_list.json";

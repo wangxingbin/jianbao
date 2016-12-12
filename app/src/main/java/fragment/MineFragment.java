@@ -23,8 +23,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
+import com.facebook.drawee.backends.pipeline.PipelineDraweeController;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.facebook.imagepipeline.core.ImagePipeline;
+import com.facebook.imagepipeline.request.ImageRequest;
+import com.facebook.imagepipeline.request.ImageRequestBuilder;
 import com.wxb.jianbao.R;
 
 import java.io.ByteArrayOutputStream;
@@ -40,7 +43,7 @@ import activity.SoldActivity;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
-import contants.Contants;
+import contants.Contans;
 import javabeen.CodeBeen;
 import javabeen.GeRenXinxi;
 import javabeen.Uphoto;
@@ -89,14 +92,15 @@ public class MineFragment extends Fragment {
     private int state;
 
     private String code;
-    private String token = "83128CE32AC64D3D999FCD5E225BF886";
+    private String token = "3317E96140BA4B149E464017288BA41C";
     private Uri faceUri;
     private String facePath;
     private Handler mHandler = new Handler();
     private File file;
-    private String TouXPath = Contants.TouXiang;
+    private String TouXPath = Contans.TouXiang;
     private HashMap<String, String> map;
     private String path;
+    private String selectImaPath;
 
     @Nullable
     @Override
@@ -119,7 +123,7 @@ public class MineFragment extends Fragment {
 //        imagePipeline.evictFromDiskCache(imgurl);
 //        // combines above two lines
 //        imagePipeline.evictFromCache(imgurl);
-        final String path = Contants.GeRenXinXi;
+        final String path = Contans.GeRenXinXi;
         HashMap<String, String> map = new HashMap<>();
         map.put("token", token);
         OkhttpUtils.setGetEntiydata(new OkhttpUtils.EntiyData() {
@@ -142,7 +146,7 @@ public class MineFragment extends Fragment {
                     @Override
                     public void run() {
                         if (!photo.isEmpty() || photo != null) {
-                            String path = Contants.IMGQZ + photo;
+                            String path = Contans.IMGQZ + photo;
                             Uri imgurl = Uri.parse(path);
                             // 清除Fresco对这条验证码的缓存
                             ImagePipeline imagePipeline = Fresco.getImagePipeline();
@@ -150,6 +154,8 @@ public class MineFragment extends Fragment {
                             imagePipeline.evictFromDiskCache(imgurl);
                             // combines above two lines
                             imagePipeline.evictFromCache(imgurl);
+
+                            imagePipeline.clearCaches();
                             mineIvPhoto.setImageURI(imgurl);
                         }
                         mineTvName.setText(name);
@@ -244,30 +250,39 @@ public class MineFragment extends Fragment {
             if (data != null) {
                 try {
                     // 获得图片的uri
-                    Uri originalUri =  data.getData();
-                    String[] proj = {MediaStore.Images.Media.DATA};
-                    Cursor cursor = getActivity().managedQuery(originalUri, proj, null, null, null);
-                    if (cursor != null && cursor.moveToFirst()) {
-                        String string = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA));
+                    Uri originalUri = data.getData();
+                    selectImaPath = originalUri.toString();
+                    if (selectImaPath.startsWith("file:///s")) {
+
+                    } else {
+                        String[] proj = {MediaStore.Images.Media.DATA};
+                        Cursor cursor = getActivity().managedQuery(originalUri, proj, null, null, null);
+                        if (cursor != null && cursor.moveToFirst()) {
+                            String string = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA));
+                            //按我个人理解 这个是获得用户选择的图片的索引值
+                            int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+                            //将光标移至开头 ，这个很重要，不小心很容易引起越界
+                            cursor.moveToFirst();
+                            //最后根据索引值获取图片路径
+                            selectImaPath = cursor.getString(column_index);
+                        }
                     }
-
-
-                    //按我个人理解 这个是获得用户选择的图片的索引值
-                    int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-                    //将光标移至开头 ，这个很重要，不小心很容易引起越界
-                    cursor.moveToFirst();
-                    //最后根据索引值获取图片路径
-                    path = cursor.getString(column_index);
-//                    edit.putString("path", path);
-//                    edit.commit();
 
                     mHandler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            File file = new File(path);
-                            Uri parse = Uri.fromFile(file);
-                            mineIvPhoto.setImageURI(parse);
-                            upLoadFaceIcon(file);
+//                            File file = new File(selectImaPath);
+//                            Uri parse = Uri.fromFile(file);
+
+                            ImagePipeline imagePipeline = Fresco.getImagePipeline();
+                            imagePipeline.evictFromMemoryCache(Uri.parse(selectImaPath));
+                            imagePipeline.evictFromDiskCache(Uri.parse(selectImaPath));
+                            // combines above two lines
+                            imagePipeline.evictFromCache(Uri.parse(selectImaPath));
+                            imagePipeline.clearCaches();
+                            requestImage(selectImaPath);
+                            String replace = selectImaPath.replace("file://", "");
+                            upLoadFaceIcon(new File(replace));
                         }
                     }, 500);
 
@@ -407,7 +422,7 @@ public class MineFragment extends Fragment {
     private void initData() {
         HashMap<String, String> map = new HashMap<>();
         map.put("token", token);
-        String path = Contants.InvitationCode;
+        String path = Contans.InvitationCode;
         OkhttpUtils.setGetEntiydata(new OkhttpUtils.EntiyData() {
             @Override
             public void getEntiy(Object o) {
@@ -464,6 +479,18 @@ public class MineFragment extends Fragment {
         });
 
         OkhttpUtils.post(map, path, getActivity(), CodeBeen.class);
+    }
+
+    private void requestImage(String url) {
+        ImageRequest request = ImageRequestBuilder.newBuilderWithSource(Uri.parse(url))
+                .setAutoRotateEnabled(true)
+                .build();
+
+        PipelineDraweeController controller = (PipelineDraweeController) Fresco.newDraweeControllerBuilder()
+                .setImageRequest(request)
+                .build();
+
+        mineIvPhoto.setController(controller);
     }
 
 }

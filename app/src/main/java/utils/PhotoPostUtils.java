@@ -44,6 +44,7 @@ public class PhotoPostUtils {
 
     public static void upLoad(File file, final Context context, String  path, HashMap<String ,String>map, final Type clas){
         RequestBody fileBody = RequestBody.create(MediaType.parse("image/jpg"), file);
+
         requestBody = new MultipartBody.Builder();
         requestBody.setType(MultipartBody.FORM);
         requestBody.addFormDataPart("photo",file.getName(),fileBody);
@@ -61,6 +62,7 @@ public class PhotoPostUtils {
         call.enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
+                Log.e(TAG, "上传图片失败");
 
             }
 
@@ -70,11 +72,12 @@ public class PhotoPostUtils {
                         String string = response.body().string();
                         Object o = gson.fromJson(string, clas);
                         data.setRegisterData(o);
+                        Log.e(TAG, "上传图片成功");
 
                     }
                 else
                     {
-                        Log.e(TAG, "onResponse: "+response.code());
+                        Log.e(TAG, "上传图片其他异常"+response.code());
                     }
             }
         });
