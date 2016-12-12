@@ -147,7 +147,7 @@ public class MineFragment extends Fragment {
                     @Override
                     public void run() {
                         if (photo ==null || photo.isEmpty()){
-                            mineIvPhoto.setImageResource(R.mipmap.morentx);
+                            mineIvPhoto.setImageResource(R.mipmap.moren);
                         }else if (!photo.isEmpty() || photo != null) {
                             String path = Contant.IMGQZ + photo;
                             Uri imgurl = Uri.parse(path);
