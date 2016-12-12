@@ -1,6 +1,8 @@
 package activity;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -33,12 +35,14 @@ public class AttentionActivity extends Activity {
     private ImageView iv;
     private ArrayList<ShowBean.DataBean.ListBean> list;
     private Handler mHandler = new Handler();
-    private String token = "8B169BF5768049F0BB20B1680042FBF7";
+    private String token;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_attention);
+        SharedPreferences sp = getSharedPreferences("TOKEN", Context.MODE_PRIVATE);
+        token = sp.getString("token", "");
         initView();
         initData();
         initBack();

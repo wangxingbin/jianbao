@@ -47,7 +47,7 @@ import javabeen.GeRenXinxi;
 import javabeen.Uphoto;
 import utils.OkhttpUtils;
 import utils.TakePhotoPopWin;
-import webutils.PhotoPostUtil;
+import utils.PhotoPostUtil;
 
 import static com.wxb.jianbao.R.id.mine_tv_invitationCode;
 
@@ -89,15 +89,15 @@ public class MineFragment extends Fragment {
     private TakePhotoPopWin photoPopWin;
     private int state;
     private String code;
-    private String token = "8B169BF5768049F0BB20B1680042FBF7";
+    private String token;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_mine, container, false);
         ButterKnife.inject(this, view);
-        /*SharedPreferences sp = getActivity().getSharedPreferences("TOKEN", Context.MODE_PRIVATE);
-        token = sp.getString("token", "");*/
+       SharedPreferences sp = getActivity().getSharedPreferences("TOKEN", Context.MODE_PRIVATE);
+        token = sp.getString("token", "");
         initMine();
         return view;
     }

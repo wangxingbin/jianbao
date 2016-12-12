@@ -1,5 +1,7 @@
 package fragment;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -35,14 +37,14 @@ public class FragmentPublished extends Fragment {
     private Handler mHandler=new Handler();
     private ArrayList<CheckPublished.DataBean.ListBean> list;
     private ImageView iv;
-    private String token = "8B169BF5768049F0BB20B1680042FBF7";
+    private String token;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_fabu,container,false);
-        /*SharedPreferences sp = getActivity().getSharedPreferences("TOKEN", Context.MODE_PRIVATE);
-        token = sp.getString("token", "");*/
+        SharedPreferences sp = getActivity().getSharedPreferences("TOKEN", Context.MODE_PRIVATE);
+        token = sp.getString("token", "");
         initView();
         initData();
         //测试
