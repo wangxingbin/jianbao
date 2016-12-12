@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "D:\\android_studio\\JianBao\\sample\\build\\intermediates\\res\\merged\\debug\\color\\vpi__dark_theme.xml",
+        "source": "D:\\android_studio\\JianBao\\sample\\build\\intermediates\\exploded-aar\\JianBao\\library\\unspecified\\res\\color\\vpi__dark_theme.xml"
+    },
+    {
+        "merged": "D:\\android_studio\\JianBao\\sample\\build\\intermediates\\res\\merged\\debug\\color\\vpi__light_theme.xml",
+        "source": "D:\\android_studio\\JianBao\\sample\\build\\intermediates\\exploded-aar\\JianBao\\library\\unspecified\\res\\color\\vpi__light_theme.xml"
+    }
+]
