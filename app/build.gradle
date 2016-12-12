@@ -5,7 +5,11 @@ android {
     buildToolsVersion "22.0.1"
     defaultConfig {
         applicationId "com.wxb.jianbao"
+<<<<<<< HEAD
         minSdkVersion 16
+=======
+        minSdkVersion 22
+>>>>>>> origin/master
         targetSdkVersion 22
         versionCode 1
         versionName "1.0"
@@ -26,6 +30,7 @@ dependencies {
     })
     compile 'com.android.support:appcompat-v7:22.2.0'
     testCompile 'junit:junit:4.12'
+<<<<<<< HEAD
     compile 'com.jakewharton:butterknife:5.1.1'
     compile project(':library')
     compile 'com.android.support:recyclerview-v7:22.2.0'
@@ -33,4 +38,10 @@ dependencies {
     compile 'com.google.android.gms:play-services-appindexing:8.4.0'
     compile 'com.squareup.okhttp3:okhttp:3.4.1'
     compile 'com.google.code.gson:gson:2.8.0'
+=======
+    compile 'com.android.support:design:22.2.0'
+    compile 'com.google.code.gson:gson:2.8.0'
+    compile 'com.squareup.okhttp3:okhttp:3.4.2'
+
+>>>>>>> origin/master
 }

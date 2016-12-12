@@ -1,3 +1,19 @@
 <resources>
-    <string name="app_name">JianBao</string>
+    <string name="app_name">贱宝</string>
+    <string name="land_zhanghao">账号</string>
+    <string name="login_label_username">手机号</string>
+    <string name="login_label_password">密码</string>
+    <string name="login_label_signin">登陆</string>
+    <string name="input_username">请输入手机号</string>
+    <string name="input_password">请输入密码</string>
+    <string name="login_register_link">没有账号?</string>
+    <string name="textlink"><u>注册</u></string>
+    <string name="confirm_password">请输入你的姓名</string>
+    <string name="confirm_password_lable">姓名</string>
+    <string name="invite_code_lable">邀请码</string>
+    <string name="invite_code_input">请输入您的邀请码</string>
+    <string name="upload_pictures">上传证件照</string>
+    <string name="string">（正反两张）</string>
+    <string name="register_string">注册</string>
+    <string name="rember">记住账号和密码</string>
 </resources>

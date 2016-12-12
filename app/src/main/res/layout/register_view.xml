@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/back_land"
+    android:orientation="vertical">
+
+    <RelativeLayout
+
+        android:id="@+id/login_div"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dip"
+        android:background="@drawable/background_login_div_bg"
+        android:padding="15dip">
+        <!-- 账号 -->
+        <TextView
+            android:id="@+id/login_user_input"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="5dp"
+            android:text="@string/login_label_username"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/username_edit"
+            android:layout_width="fill_parent"
+            android:layout_height="30dp"
+            android:layout_below="@id/login_user_input"
+            android:background="@drawable/editback"
+            android:hint="@string/input_username"
+            android:inputType="text"
+            android:singleLine="true"
+            android:textSize="20sp" />
+        <!-- 密码 text -->
+        <TextView
+            android:id="@+id/login_password_input"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/username_edit"
+            android:layout_marginTop="3dp"
+            android:text="@string/login_label_password"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/password_edit"
+            android:layout_width="fill_parent"
+            android:layout_height="30dp"
+            android:layout_below="@id/login_password_input"
+            android:background="@drawable/editback"
+            android:hint="@string/input_password"
+            android:singleLine="true"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/confirm_password_input"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/password_edit"
+            android:layout_marginTop="3dp"
+            android:text="@string/confirm_password_lable"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/name"
+            android:layout_width="fill_parent"
+            android:layout_height="30dp"
+            android:layout_below="@id/confirm_password_input"
+            android:background="@drawable/editback"
+            android:hint="@string/confirm_password"
+            android:singleLine="true"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/invite_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/name"
+            android:layout_marginTop="3dp"
+            android:text="@string/invite_code_lable"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/invite_code_edit"
+            android:layout_width="fill_parent"
+            android:layout_height="30dp"
+            android:layout_below="@id/invite_code"
+            android:background="@drawable/editback"
+            android:hint="@string/invite_code_input"
+            android:singleLine="true"
+            android:textSize="20sp" />
+
+        <RadioGroup
+            android:id="@+id/grop"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/invite_code_edit"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/boys"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="男"
+                android:textSize="20sp" />
+
+            <RadioButton
+                android:id="@+id/grils"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="女"
+                android:textSize="20sp" />
+        </RadioGroup>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/grop"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/upload_photo"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/uploadphoto"
+                android:text="@string/upload_pictures"
+                android:textSize="15sp" />
+
+
+            />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+    </RelativeLayout>
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:gravity="center">
+       <Button
+           android:id="@+id/register_button"
+           android:layout_width="100dp"
+           android:layout_height="wrap_content"
+
+           android:background="@drawable/button_back_land"
+           android:text="@string/register_string"
+           android:textSize="20sp"
+           />
+   </LinearLayout>
+</LinearLayout>

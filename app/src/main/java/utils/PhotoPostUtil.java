@@ -20,6 +20,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
+import view.ShowToastUtils;
 
 import static android.content.ContentValues.TAG;
 
@@ -44,7 +45,7 @@ public class PhotoPostUtil {
         RequestBody fileBody = RequestBody.create(MediaType.parse("image/jpg"), file);
         requestBody = new MultipartBody.Builder();
         requestBody.setType(MultipartBody.FORM);
-        requestBody.addFormDataPart("photo",file.getName(),fileBody);
+        requestBody.addFormDataPart("card",file.getName(),fileBody);
 
         Set<Map.Entry<String ,String>>entries= map.entrySet();
         for (Map.Entry<String,String>entry:entries){
@@ -59,7 +60,7 @@ public class PhotoPostUtil {
         call.enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-
+                ShowToastUtils.showToast(context,"上传数据失败");
             }
 
             @Override
