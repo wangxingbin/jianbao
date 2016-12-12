@@ -146,7 +146,9 @@ public class MineFragment extends Fragment {
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        if (!photo.isEmpty() || photo != null) {
+                        if (photo ==null || photo.isEmpty()){
+                            mineIvPhoto.setImageResource(R.mipmap.morentx);
+                        }else if (!photo.isEmpty() || photo != null) {
                             String path = Contant.IMGQZ + photo;
                             Uri imgurl = Uri.parse(path);
                             // 清除Fresco对这条验证码的缓存
@@ -158,8 +160,6 @@ public class MineFragment extends Fragment {
 
                             imagePipeline.clearCaches();
                             mineIvPhoto.setImageURI(imgurl);
-
-                        }else {
 
                         }
                         mineTvName.setText(name);
