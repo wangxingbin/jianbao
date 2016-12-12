@@ -18,7 +18,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import adapter.MyAttentionAdapter;
-import app.Contant;
+import contants.Contants;
 import javabeen.ShowBean;
 import utils.OkhttpUtils;
 
@@ -33,7 +33,7 @@ public class AttentionActivity extends Activity {
     private ImageView iv;
     private ArrayList<ShowBean.DataBean.ListBean> list;
     private Handler mHandler = new Handler();
-    private String token = "8B169BF5768049F0BB20B1680042FBF7";
+    private String token = "83128CE32AC64D3D999FCD5E225BF886";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,9 +53,10 @@ public class AttentionActivity extends Activity {
         });
     }
 
+
     private void initData() {
         String curPage = "1";
-        String PATH = Contant.GuznZhu;
+        String PATH = Contants.GuznZhu;
         Map<String, String> map = new HashMap<>();
         map.put("token", token);
         map.put("curPage", curPage);
@@ -113,7 +114,7 @@ public class AttentionActivity extends Activity {
     private void initView() {
         barName = (TextView) findViewById(R.id.bar_tv_name);
         backImage = (ImageView) findViewById(R.id.bar_iv_back);
-        barName.setText("我收藏的");
+        barName.setText("我关注的");
         recyclerview = (RecyclerView) findViewById(R.id.fragment_fabu_recyclerview);
         iv = (ImageView) findViewById(R.id.fragment_fabu_iv);
     }

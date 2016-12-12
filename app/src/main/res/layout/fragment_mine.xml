@@ -26,17 +26,15 @@
                 android:layout_height="130dp"
                 android:layout_gravity="center_vertical"
                 android:padding="5dp"
-
-                fresco:actualImageScaleType="centerInside"
+                fresco:actualImageScaleType="centerCrop"
                 fresco:backgroundImage="@mipmap/mine"
-                fresco:failureImage="@mipmap/ic_launcher"
-                fresco:failureImageScaleType="centerInside"
                 fresco:roundAsCircle="true"
                 fresco:roundingBorderColor="#000000"
                 fresco:roundingBorderWidth="1dp"
 
                 />
-
+            <!--fresco:failureImage="@mipmap/ic_launcher"-->
+            <!--fresco:failureImageScaleType="centerCrop"-->
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -152,7 +150,8 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginLeft="15dp"
-            android:src="@mipmap/ic_launcher" />
+            android:padding="3dp"
+            android:src="@mipmap/setting" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -192,7 +191,8 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginLeft="15dp"
-            android:src="@mipmap/ic_launcher" />
+            android:src="@mipmap/yaoqing"
+            android:padding="4dp"/>
 
         <TextView
             android:layout_width="wrap_content"

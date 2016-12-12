@@ -20,7 +20,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import adapter.MyAttentionAdapter;
-import app.Contant;
+import contants.Contants;
 import javabeen.CheckPublished;
 import javabeen.ShowBean;
 import utils.OkhttpUtils;
@@ -36,7 +36,7 @@ public class FragmentShow extends Fragment {
     private ImageView iv;
     private ArrayList<ShowBean.DataBean.ListBean> list;
     private Handler mHandler=new Handler();
-    private String token = "8B169BF5768049F0BB20B1680042FBF7";
+    private String token = "83128CE32AC64D3D999FCD5E225BF886";
 
     @Nullable
     @Override
@@ -63,7 +63,7 @@ public class FragmentShow extends Fragment {
 
     private void initData() {
         String curPage="1";
-        String PATH = Contant.GuznZhu;
+        String PATH = Contants.GuznZhu;
         Map<String,String> map = new HashMap<>();
         map.put("token",token);
         map.put("curPage",curPage);

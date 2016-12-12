@@ -1,10 +1,10 @@
-package app;
+package contants;
 
 /**
  * Created by Administrator on 2016/12/6.
  */
 
-public class Contant {
+public class Contants {
     public static final String  MAIN = "http://192.168.4.188/Goods";
     // 已发布商品查询
     public static final String CHECKPUBLISHED = MAIN + "/app/user/issue_list.json";
@@ -17,5 +17,11 @@ public class Contant {
 
     // 已关注商品
     public static final String GuznZhu = MAIN + "/app/user/follow_list.json";
+
+    // 上传头像
+    public static final String TouXiang = MAIN + "/app/user/upload.json";
+
+    // 图片前缀
+    public static final String IMGQZ = "http://192.168.4.188/Goods/uploads/";
 
 }

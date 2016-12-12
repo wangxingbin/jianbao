@@ -1,4 +1,4 @@
-package app;
+package contants;
 
 import android.app.Application;
 
