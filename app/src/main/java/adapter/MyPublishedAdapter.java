@@ -13,6 +13,7 @@ import com.wxb.jianbao.R;
 
 import java.util.ArrayList;
 
+import app.Contant;
 import javabeen.CheckPublished;
 
 /*
@@ -50,7 +51,7 @@ public class MyPublishedAdapter extends RecyclerView.Adapter <MyPublishedAdapter
     @Override
     public void onBindViewHolder(final MyViewHolder holder, int position) {
         // 图片
-        String image = "http://192.168.4.188/Goods/uploads/"+list.get(position).getImage();
+        String image = Contant.IMGQZ+list.get(position).getImage();
 //        // 转换时间
 //        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 //        long issue_time = list1.get(position).getIssue_time();

@@ -12,7 +12,6 @@ import android.widget.TextView;
 import com.wxb.jianbao.R;
 
 import fragment.MineFragment;
-import fragment.FragmentShow;
 
 /**
  * Created by Administrator on 2016/11/28.

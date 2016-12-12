@@ -46,6 +46,7 @@ public class AttentionActivity extends Activity {
         initView();
         initData();
         initBack();
+        //测试
     }
 
     private void initBack() {

@@ -38,16 +38,16 @@ import activity.AttentionActivity;
 import activity.PublishedActivity;
 import activity.SettingsActivity;
 import activity.SoldActivity;
-import app.Contant;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
+import app.Contant;
 import javabeen.CodeBeen;
 import javabeen.GeRenXinxi;
 import javabeen.Uphoto;
 import utils.OkhttpUtils;
-import utils.TakePhotoPopWin;
 import utils.PhotoPostUtil;
+import utils.TakePhotoPopWin;
 
 import static com.wxb.jianbao.R.id.mine_tv_invitationCode;
 
