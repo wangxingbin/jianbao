@@ -45,6 +45,7 @@ public class FragmentPublished extends Fragment {
         token = sp.getString("token", "");*/
         initView();
         initData();
+        //测试
         return view;
     }
 
