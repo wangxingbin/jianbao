@@ -14,6 +14,7 @@ public class GeRenXinxi {
 
     private String status;
     private String info;
+
     private DataBean data;
 
     public String getStatus() {

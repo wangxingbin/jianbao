@@ -158,6 +158,9 @@ public class MineFragment extends Fragment {
 
                             imagePipeline.clearCaches();
                             mineIvPhoto.setImageURI(imgurl);
+
+                        }else {
+
                         }
                         mineTvName.setText(name);
                         mineTvPhoneNum.setText(mobile);
@@ -342,7 +345,7 @@ public class MineFragment extends Fragment {
         startActivityForResult(intent, PHOTO_REQUEST_CAREMA);
     }
 
-
+    //上传图片
     private void upLoadFaceIcon(File file) {
         PhotoPostUtils.getData(new PhotoPostUtils.GetRegisterData() {
             @Override
