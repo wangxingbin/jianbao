@@ -1,6 +1,7 @@
 package fragment;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -92,7 +93,7 @@ public class MineFragment extends Fragment {
     private int state;
 
     private String code;
-    private String token = "3317E96140BA4B149E464017288BA41C";
+    private String token;
     private Uri faceUri;
     private String facePath;
     private Handler mHandler = new Handler();
@@ -107,8 +108,8 @@ public class MineFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_mine, container, false);
         ButterKnife.inject(this, view);
-        /*SharedPreferences sp = getActivity().getSharedPreferences("TOKEN", Context.MODE_PRIVATE);
-        token = sp.getString("token", "");*/
+        SharedPreferences sp = getActivity().getSharedPreferences("TOKEN", Context.MODE_PRIVATE);
+        token = sp.getString("token", "");
         initMine();
         facePath = Environment.getExternalStorageDirectory() + "/face.jpg";
         return view;

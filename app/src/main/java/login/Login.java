@@ -45,6 +45,7 @@ public class Login extends Activity implements View.OnClickListener{
         private String username;
         private String password;
     private ProgressDialog progressDialog;
+    private String token;
 
     @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -161,12 +162,11 @@ public class Login extends Activity implements View.OnClickListener{
                     LandBeen.DataBean data = landbeen.getData();
 
                     int state = data.getState();
-                    String token = data.getToken();
+                    token = landbeen.getToken();
                     SharedPreferences share= getSharedPreferences("TOKEN",MODE_PRIVATE);
                     SharedPreferences.Editor edit = share.edit();
-                    edit.putString("token",token);
+                    edit.putString("token", token);
                     edit.commit();
-                    password1 = data.getPassword();
                     name = data.getName();
 
                 }
