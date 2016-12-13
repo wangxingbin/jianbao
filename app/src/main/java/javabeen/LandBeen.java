@@ -1,5 +1,4 @@
 package javabeen;
-
 /**
  * Created by 孙贝贝 on 2016/11/28.
  */
@@ -10,11 +9,17 @@ public class LandBeen {
      * status : 200
      * info : 成功
      * data : {"id":27,"name":"123","state":0}
-     * token : 2B2B6A2D85BB4BF1A4D6F24DACADC94D
+     * token : A50265A0DF284B66B32010DED5838FCD
      */
 
     private String status;
     private String info;
+    /**
+     * id : 27
+     * name : 123
+     * state : 0
+     */
+
     private DataBean data;
     private String token;
 
@@ -51,12 +56,6 @@ public class LandBeen {
     }
 
     public static class DataBean {
-        /**
-         * id : 27
-         * name : 123
-         * state : 0
-         */
-
         private int id;
         private String name;
         private int state;
