@@ -48,8 +48,6 @@
         <activity
             android:name="activity.PublishedActivity"
             android:theme="@style/Theme.PageIndicatorDefaults" />
-        <!--
-                <activity android:name="activity.MainActivity" />-->
 
         <activity
             android:name="activity.SoldActivity"
