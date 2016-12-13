@@ -122,7 +122,7 @@ public class AttentionActivity extends Activity {
     private void initView() {
         barName = (TextView) findViewById(R.id.bar_tv_name);
         backImage = (ImageView) findViewById(R.id.bar_iv_back);
-        barName.setText("我收藏的");
+        barName.setText("我关注的");
         recyclerview = (RecyclerView) findViewById(R.id.fragment_fabu_recyclerview);
         iv = (ImageView) findViewById(R.id.fragment_fabu_iv);
     }

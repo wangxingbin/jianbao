@@ -92,7 +92,7 @@ public class MyAttentionAdapter extends RecyclerView.Adapter <MyAttentionAdapter
             fabu_money = (TextView) itemView.findViewById(R.id.item_fabu_money);
             fabu_time = (TextView) itemView.findViewById(R.id.item_fabu_time);
             view = itemView.findViewById(R.id.view);
-            view.setBackgroundColor(context.getResources().getColor(R.color.hh));
+            view.setBackgroundColor(context.getResources().getColor(R.color.redd));
         }
     }
 }
