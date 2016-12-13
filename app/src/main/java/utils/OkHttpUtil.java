@@ -55,7 +55,7 @@ public class OkHttpUtil {
         call.enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                Toast.makeText(context, "下载数据失败", Toast.LENGTH_SHORT).show();
+
             }
 
             @Override

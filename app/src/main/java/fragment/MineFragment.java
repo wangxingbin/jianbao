@@ -48,6 +48,7 @@ import butterknife.OnClick;
 import javabeen.CodeBeen;
 import javabeen.GeRenXinxi;
 import javabeen.Uphoto;
+import login.Login;
 import utils.OkhttpUtils;
 import utils.PhotoPostUtils;
 import utils.TakePhotoPopWin;
@@ -193,6 +194,7 @@ public class MineFragment extends Fragment {
                 initData();
                 break;
             case R.id.mine_bt:
+                startActivity(new Intent(getActivity(), Login.class));
                 break;
             case R.id.mine_ll_settings:
                 startActivity(new Intent(getActivity(), SettingsActivity.class));
