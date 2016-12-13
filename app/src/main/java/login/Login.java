@@ -45,6 +45,7 @@ public class Login extends Activity implements View.OnClickListener{
         private String username;
         private String password;
     private ProgressDialog progressDialog;
+    private String token;
 
     @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -161,12 +162,11 @@ public class Login extends Activity implements View.OnClickListener{
                     LandBeen.DataBean data = landbeen.getData();
 
                     int state = data.getState();
-                    String token = landbeen.getToken();
+                    token = landbeen.getToken();
                     SharedPreferences share= getSharedPreferences("TOKEN",MODE_PRIVATE);
                     SharedPreferences.Editor edit = share.edit();
-                    edit.putString("token",token);
+                    edit.putString("token", token);
                     edit.commit();
-
                     name = data.getName();
 
                 }
@@ -198,12 +198,7 @@ public class Login extends Activity implements View.OnClickListener{
                     if (username.equals("") && password.equals("")) {
                         ShowToastUtils.showToast(this,"请输入手机号跟密码");
                         return;
-                    }
-                    else  if (password.equals("")){
-                        ShowToastUtils.showToast(this,"请输入密码");
-                        return;
-
-                    }   else if (username.length()>11||username.length()<11) {
+                    } else if (username.length()>11||username.length()<11) {
                         ShowToastUtils.showToast(this,"请输入正确手机号");
                         return;
                     } else {

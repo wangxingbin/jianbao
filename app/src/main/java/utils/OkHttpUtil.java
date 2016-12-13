@@ -84,6 +84,7 @@ public class OkHttpUtil {
 //                    Object o = gson.fromJson(string, cla);
 //                    //回调结果
 //                    data.getEntiy(o);
+
 //                } else {
 //                    Log.e(TAG, "失败");
 //                }
