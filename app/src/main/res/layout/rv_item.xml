@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/itemd"
+    android:layout_margin="3dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:layout_alignParentLeft="true"
+            android:id="@+id/id_sdv"
+            android:layout_width="match_parent"
+            android:layout_height="155dp"
+            android:layout_margin="3dp"
+            fresco:actualImageScaleType="fitXY"
+            fresco:placeholderImage="@mipmap/ic_launcher"
+            fresco:placeholderImageScaleType="fitCenter"
+            />
+
+
+        <TextView
+            android:id="@+id/tv_biaoti"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="我是哈哈哈哈"
+            android:layout_margin="2dp"
+            android:textSize="15sp"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+
+        <TextView
+            android:id="@+id/tv_jiaqian"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@mipmap/qqq"
+            android:text=":500"
+            android:textColor="#f00"
+            android:layout_margin="10dp"
+            android:textSize="18sp"
+            android:gravity="center"
+            />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/iv_yixiajia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/tyxjj"
+        android:visibility="visible"
+        android:layout_centerInParent="true"/>
+
+
+
+</RelativeLayout>

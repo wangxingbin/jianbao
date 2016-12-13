@@ -33,6 +33,12 @@ public class MainFrameAcitvity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_frame);
         initView();
+
+        FragmentTransaction transaction= fragmentManager.beginTransaction();
+        contentFragment = new ShowFragment();
+        transaction.replace(R.id.main_frame_layout, contentFragment);
+        transaction.commit();
+
         initEvent();
     }
 

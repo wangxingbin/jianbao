@@ -64,6 +64,11 @@
         <activity android:name="login.Camera"></activity>
         <activity android:name="login.Login"></activity>
         <activity android:name="login.Register"></activity>
+        <activity android:name="activity.SousuoActivity"/>
+        <activity android:name="activity.SSLBActivity"/>
+        <activity android:name="activity.PhotoViewD"/>
+        <activity android:name="activity.SPXQActivity"/>
+
 
     </application>
 

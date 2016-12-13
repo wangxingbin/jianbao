@@ -1,6 +1,7 @@
 package fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
@@ -21,6 +22,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import activity.SPXQActivity;
 import adapter.MyPublishedAdapter;
 import app.Contant;
 import javabeen.CheckPublished;
@@ -61,6 +63,9 @@ public class FragmentPublished extends Fragment {
             public void ItemClickListener(View view, int position) {
                 /*startActivity(new Intent(getActivity(), SoldActivity.class));*/
                 Toast.makeText(getActivity(), "你点击了"+position, Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getActivity(), SPXQActivity.class);
+                intent.putExtra("id",list.get(position).getId()+"");
+                startActivity(intent);
             }
         });
     }
@@ -82,6 +87,7 @@ public class FragmentPublished extends Fragment {
                     //iv.setVisibility(View.GONE);
                     CheckPublished checkPublished = (CheckPublished)o;
                     list =(ArrayList)checkPublished.getData().getList();
+
                     if (list.isEmpty()){
                        getActivity().runOnUiThread(new Runnable() {
                            @Override

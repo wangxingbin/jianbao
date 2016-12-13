@@ -19,4 +19,9 @@ public class Contant {
     // 图片前缀
     public static final String IMGQZ = "http://192.168.4.188/Goods/uploads/";
 
+    public static  final String CHAXUN=MAIN+"/app/item/list.json";
+    public static  final String XIANGQING=MAIN+"/app/item/detail.json";
+    public static  final String GUANZHU=MAIN+"/app/item/follow.json";
+
+
 }

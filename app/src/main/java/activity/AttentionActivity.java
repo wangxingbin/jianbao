@@ -2,6 +2,7 @@ package activity;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
@@ -110,6 +111,9 @@ public class AttentionActivity extends Activity {
             public void ItemClickListener(View view, int position) {
                 /*startActivity(new Intent(getActivity(), SoldActivity.class));*/
                 Toast.makeText(AttentionActivity.this, "你点击了" + position, Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(AttentionActivity.this, SPXQActivity.class);
+                intent.putExtra("id",list.get(position).getId()+"");
+                startActivity(intent);
             }
         });
 
