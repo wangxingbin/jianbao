@@ -63,7 +63,6 @@
         <activity android:name="activity.PhotoViewD"/>
         <activity android:name="activity.SPXQActivity"/>
 
-
     </application>
 
 </manifest>
