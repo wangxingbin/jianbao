@@ -408,6 +408,7 @@ public class SPXQActivity extends Activity {
                     ImageView iv=new ImageView(SPXQActivity.this);
                     Picasso.with(SPXQActivity.this).load("http://192.168.4.188/Goods/uploads/" + alist.get(0)).into(iv);
                     iv.setScaleType(ImageView.ScaleType.FIT_XY);
+                    iv.setLayoutParams(new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT));
                     rl_vp.addView(iv);
 //                    Uri uri = Uri.parse("http://192.168.4.188/Goods/uploads/" + alist.get(0));
 //                    draweeView.setImageURI(uri);
